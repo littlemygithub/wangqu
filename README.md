@@ -6,3 +6,5 @@
  项目运行：python manage.py runserver 端口号 （项目运行需要在manage.py同一个目录下运行）
  项目入口：IP地址:端口号/home
  
+ 项目使用的数据库是django自带的数据库sqlite3
+ 
