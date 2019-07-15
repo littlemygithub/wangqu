@@ -1,0 +1,311 @@
+{% extends "index.html" %}
+{% block header %}
+{#    <link rel="stylesheet" type="text/css" href="css/zzsc.css">#}
+{#    <link rel="stylesheet" href="css/dcalendar.picker.css"/>#}
+{% endblock %}
+{% block css %}
+    ul{
+        list-style-type: none;
+    }
+    .content{
+        margin: 75px auto;
+        width:100%;
+        height: 450px;
+    }
+    .advice{
+        float: left;
+        width: 350px;
+        height: 450px;
+        background-color: #2aabd2;
+    }
+    .lunbo{
+        width: 600px;
+        height: 450px;
+        left:350px;
+        position:absolute;
+{#        background-color: yellow;#}
+        float: left;
+    }
+    .shijian{
+        width:399px;
+        height: 450px;
+        position: relative;
+        float: right;
+    }
+    .img1{
+        width: 600px;
+        height: 450px;
+    }
+    .img li{
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+    .num{
+        position:absolute;
+        bottom:20px;
+        text-align:center;
+        width:100%;
+
+    }
+    .num li{
+        display:inline-block;
+        height:20px;
+        width:20px;
+        background-color:gray;
+        color:white;
+        text-align:center;
+        line-height:20px;
+        margin:0 10px;
+    }
+    .btn{
+        position: absolute;
+        line-height: 60px;
+        top:50%;
+        background-color: darkgrey;
+        text-align: center;
+        margin-top: -60px;
+        display:none;
+    }
+    .left_btn{
+     left:0;
+    }
+    .right_btn{
+        right: -9px;
+    }
+    .lunbo:hover .btn{
+        display: block;
+    }
+
+    .lunbo .num .current{
+        background-color:red;
+    }
+
+
+    body,div,p{ font-family: 'Microsoft Yahei' ;font-size: 14px;}
+    .box{ width: 384px; height: 384px; border:10px solid #8bf2f1;margin:20px auto; border-radius: 50%;
+        box-shadow: 0px 0px 20px 3px #444 inset; position: relative;}
+    /*原点*/
+    .origin{ width: 20px; height: 20px; border-radius: 50%; background: #ff0000; top:180px; left: 170px; position: absolute;}
+    /* 指针 */
+    .clock_line{ position: absolute;position:absolute;z-index:20;}
+    .hour_line{width:100px;height:4px;top:188px;left:180px;background-color:#000;border-radius:2px;
+        transform-origin:0 50%;box-shadow:1px -3px 8px 3px #aaa;}
+    .minute_line{width:130px;height:2px;top:189px;left:170px;background-color:#000;
+        transform-origin:7.692% 50%;box-shadow:1px -3px 8px 1px #aaa;}
+    .second_line{width:170px;height:1px;top:189.5px;left:160px;background-color:#f60;
+        transform-origin:11.765% 50%;box-shadow:1px -3px 7px 1px #bbb;}
+
+    .dot_box{width: inherit; height: inherit;}
+    /*时钟数*/ /*60个秒针*/
+    .dot{ width: 1px; height: 6px; line-height: 6px; text-align: center; font-size: 22px; position: absolute;}
+    .clock-scale{width:185px;height:2px;transform-origin:0% 50%;z-index:7;
+      position:absolute;top:180px;left:184px;}
+    .scale-show{ width:8px;height:2px;background-color:#555;float:left;}
+    .scale-hidden{width:166px;height:2px;float:left;}
+    /*日期*/
+    .date_info{width:160px;height:28px;
+        line-height:28px;text-align:center;position:absolute;top:215px;left:110px;z-index:11;color:#555;
+        font-weight:bold;}
+    .time_info{ width: 110px; height: 35px; line-height: 35px;text-align:center;position:absolute;top:255px;left:140px;z-index:11;color:#555; background: #253e3e; }
+    .time{ width: 35px ;height:35px; float: left; color: #fff; font-size: 22px;}
+     #minute_time{border-left:1px solid #fff;border-right:1px solid #fff;}
+
+    .jianjie{
+        margin-top:-20x;
+        background-color:red;
+        width:100%;
+        height:500px;
+    }
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+    <div class="advice">
+        <h1>文章推荐</h1>
+    </div>
+
+    <div class="lunbo">
+        <ul class="img">
+            <li>
+                <a><img src="/static/images/3.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/5.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/6.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/7.jpg" class="img1"></a>
+            </li>
+        </ul>
+        <ul class="num">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="left_btn btn ">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </div>
+        <div class="right_btn btn">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </div>
+
+    </div>
+    <div class="shijian">
+        <div class="box" id="clock">
+    <!-- 原点 -->
+    <div class="origin"></div>
+    <!-- 时钟数 -->
+    <div class="dot_box">
+        <div class="dot">6</div>
+        <div class="dot">5</div>
+        <div class="dot">4</div>
+        <div class="dot">3</div>
+        <div class="dot">2</div>
+        <div class="dot">1</div>
+        <div class="dot">12</div>
+        <div class="dot">11</div>
+        <div class="dot">10</div>
+        <div class="dot">9</div>
+        <div class="dot">8</div>
+        <div class="dot">7</div>
+    </div>
+    <!-- 时、分、秒针 -->
+    <div class="clock_line hour_line" id="hour_line"></div>
+    <div class="clock_line minute_line" id="minute_line"></div>
+    <div class="clock_line second_line" id="second_line"></div>
+    <!-- 日期 -->
+    <div class="date_info" id="date_info"></div>
+    <!-- 时间 -->
+    <div class="time_info" >
+        <div class="time" id="hour_time"></div>
+        <div class="time" id="minute_time"></div>
+        <div class="time" id="second_time"></div>
+    </div>
+</div>
+
+    </div>
+
+</div>
+
+{#    简介部分#}
+
+
+{% endblock %}
+
+{% block js %}
+
+<script src="/static/jquery-2.1.4.min.js"></script>
+<script>
+    $('.num li').mouseover(function () {
+        $(this).addClass('current').siblings().removeClass('current');
+        var index=$(this).index()
+        $(".img li").eq(index).fadeIn(1000).siblings().fadeOut(1000);
+    })
+
+    var time=setInterval(moveR,1500);
+    var i=0;
+    function moveR() {
+        if (i==3){
+            i=-1;
+        }
+        i++;
+        $(".num li").eq(i).addClass('current').siblings().removeClass('current');
+        $(".img li").eq(i).fadeIn(1000).siblings().fadeOut(1000);
+    }
+
+    function moveL(){
+        if(i==0){
+            i=4;
+        }
+        i--;
+        $(".num li").eq(i).addClass("current").siblings().removeClass("current");
+        $(".img li").eq(i).stop().fadeIn(1000).siblings().stop().fadeOut();
+    }
+    $(".lunbo").hover(function () {
+        clearInterval(time);
+    },function () {
+        time=setInterval(moveR,1500);
+    })
+    
+    $(".left_btn").click(function () {
+        moveL();
+    })
+
+    $(".right_btn").click(function () {
+        moveR();
+    })
+
+$(function(){
+    var clock = document.getElementById("clock");
+    function initNumXY(){
+        // 1、12个数字的位置设置
+        var radius = 160;//大圆半价
+        var dot_num = 360/$(".dot").length;//每个div对应的弧度数
+        //每一个dot对应的弧度;
+        var ahd = dot_num*Math.PI/180;
+        $(".dot").each(function(index, el) {
+            $(this).css({
+                "left":180+Math.sin((ahd*index))*radius,
+                "top":180+Math.cos((ahd*index))*radius
+            });
+        });
+        // 2、刻钟设置
+        for(var i = 0; i < 60; i++) {
+            clock.innerHTML += "<div class='clock-scale'> " +
+                   "<div class='scale-hidden'></div>" +
+                   "<div class='scale-show'></div>" +
+                  "</div>";
+        }
+        var scale = document.getElementsByClassName("clock-scale");
+            for(var i = 0; i < scale.length; i++) {
+                scale[i].style.transform="rotate(" + (i * 6 - 90) + "deg)";
+        }
+    }
+    initNumXY();//调用上面的函数
+    //获取时钟id
+    var hour_line = document.getElementById("hour_line"),
+        minute_line = document.getElementById("minute_line"),
+        second_line = document.getElementById("second_line"),
+        date_info=document.getElementById("date_info"),//获取date_info
+        hour_time = document.getElementById("hour_time"),// 获去时间id
+        minute_time = document.getElementById("minute_time"),
+        second_time = document.getElementById("second_time");
+    //3、设置动态时间
+    function setTime(){
+        var nowdate = new Date();
+        //获取年月日时分秒
+        var year = nowdate.getFullYear(),
+            month = nowdate.getMonth()+1,
+            day = nowdate.getDay(),
+            hours = nowdate.getHours(),
+            minutes = nowdate.getMinutes(),
+            seconds = nowdate.getSeconds(),
+            date = nowdate.getDate();
+        var weekday =["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        // 获取日期id
+        date_info.innerHTML=year+"年"+month+"月"+day+"日   "+weekday[day];
+        hour_time.innerHTML = hours >=10 ? hours : "0"+hours;
+        minute_time.innerHTML = minutes >=10 ? minutes : "0"+minutes;
+        second_time.innerHTML = seconds >=10 ? seconds : "0"+seconds;
+        console.log(year+"年"+month+"月"+day+"日   "+weekday[day]);
+        //时分秒针设置
+        var hour_rotate = (hours*30-90) + (Math.floor(minutes / 12) * 6);
+        hour_line.style.transform = 'rotate(' + hour_rotate + 'deg)';
+        minute_line.style.transform = 'rotate(' + (minutes*6 - 90) + 'deg)';
+        second_line.style.transform = 'rotate(' + (seconds*6 - 90)+'deg)';
+    }
+    // setTime();
+    setInterval(setTime, 1000);
+
+
+});
+
+
+
+</script>
+{% endblock %}

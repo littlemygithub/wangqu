@@ -1,0 +1,168 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+{% endblock %}
+
+
+{% block css %}
+    .people{
+        width:100%;
+        min-height:480px;
+        margin-top:110px;
+    }
+    .people_head ul{
+        height:100px;
+{#      width:100%;#}
+        line-height:100px;
+{#      text-align:center;#}
+        margin-left:400px;
+        float:left;
+    }
+    ul li{
+        float:left;
+        list-style:none;
+    }
+    ul li .image{
+        height:100px;
+        width:100px;
+        margin:15px 15px 15px 15px;
+{#    border:10px solid red;#}
+    }
+    .head{
+        height:80px;
+        text-align:center;
+        margin-top:105px;
+    }
+    .people_content{
+        height:500px;
+        margin-top:100px;
+{#    background-color:red;#}
+    }
+    .people_left{
+        width:450px;
+        height:400px;
+        float:left;
+{#        background-color:darkblue;#}
+        margin:50px 50px 50px 100px;
+    }
+    .people_right{
+        width:600px;
+        height:400px;
+        float:left;
+        margin:50px 50px 50px 100px;
+{#        background-color:grey;#}
+    }
+    .people_active{
+        border:10px solid red;
+    }
+    .people_name,.people_grade{
+        font-size:30px;
+        margin-top:15px;
+    }
+    .people_name{
+        float:left;
+        margin-left:40px;
+    }
+    .people_grade{
+        float:right;
+        margin-right:60px;
+    }
+    .people_introduce{
+        height:260px;
+        width:100%;
+        overflow:auto;
+{#        overflow:hidden;#}
+{#        word-break:word-all;#}
+{#        background-color:red;#}
+        font-size:20px;
+    }
+    .people_blog{
+        font-size:20px;
+        margin-bottom:10px;
+    }
+
+
+
+{% endblock %}
+
+
+{% block content %}
+<div class="people">
+
+    <div class="head">
+        <h2>优秀社员介绍</h2>
+    </div>
+    <div class="people_head">
+        <ul>
+            {% for i in obj %}
+{#                {{ i.picture }}#}
+{#        <li><a href="#"><img src="{{ i.picture }}" class="image"></a></li>#}
+{#                data1 ={{ i.id }}#}
+        <li><a href="/people-{{ i.id }}/"><img src="{% static i.picture %}" class="image" id="{{ i.id }}"></a></li>
+            {% endfor %}
+{#        <li><a href="#"><img src="/static/images/people/3.jpg" class="image"></a></li>#}
+{#        <li><a href="#"><img src="/static/images/people/0.jpg" class="image"></a></li>#}
+{#        <li><a href="#"><img src="/static/images/people/4.jpg" class="image"></a></li>#}
+{#        <li><a href="#"><img src="/static/images/people/1.jpg" class="image"></a></li>#}
+{#        <li><a href="#"><img src="/static/images/people/6.jpg" class="image"></a></li>#}
+        </ul>
+    </div>
+
+    <div class="people_content">
+        <div class="people_left">
+            {% for i in obj %}
+                {% ifequal nid  i.id %}
+                    <img src="{% static i.picture %}" style="width:100%;height: 100%;">
+                {% endifequal %}
+            {% endfor %}
+        </div>
+        <div class="people_right">
+
+        {% for i in obj %}
+            {% if nid == i.id %}
+
+            <div class="people_name">{{ i.name }}（{{ i.position }}）</div>
+
+                <div class="people_grade">{{ i.grade }}</div>
+                <div style="clear:both;"></div>
+                <br>
+            <div class="people_blog">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  个人博客站点：
+                <a href="{{ i.blog }}">{{ i.blog }}</a>
+            </div>
+            <div class="people_introduce">&nbsp;&nbsp; &nbsp;&nbsp; {{ i.introduce }}
+{#            <p>1</p><p>2</p><p>3</p>#}
+{#                <p>1</p><p>2</p><p>3</p>#}
+{#                <p>1</p><p>2</p><p>3</p>#}
+{#                <p>1</p><p>2</p><p>3</p>#}
+            </div>
+
+            {% endif %}
+        {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+{% block js %}
+    <script src="/static/jquery-2.1.4.min.js"></script>
+    <script>
+  $(document).ready(function () {
+      $("li a .image").click(function () {
+          $(this).addClass("people_active");
+          {#var d = $(this).attr("id");#}
+      });
+      $("li a .image").mouseleave(function () {
+          $(this).removeClass("people_active");
+      });
+  })
+
+
+
+    </script>
+
+{% endblock %}

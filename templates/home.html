@@ -1,0 +1,218 @@
+{% extends "index.html" %}
+{% block header %}
+
+{% endblock %}
+{% block css %}
+    ul{
+        list-style-type: none;
+    }
+    .content{
+{#        margin: 75px auto;#}
+        width:100%;
+        height: 450px;
+    }
+    .lunbo{
+        width: 100%;
+        height: 450px;
+        margin-top:75px;
+        position:absolute;
+
+        float: left;
+    }
+   a .img1{
+        width: 100%;
+        height: 450px;
+
+    }
+    .img li{
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+    .num{
+        position:absolute;
+        bottom:20px;
+        text-align:center;
+        width:100%;
+
+    }
+    .num li{
+        display:inline-block;
+        height:20px;
+        width:20px;
+        background-color:gray;
+        color:white;
+        text-align:center;
+        line-height:20px;
+        margin:0 10px;
+    }
+    .btn{
+        position: absolute;
+        line-height: 60px;
+        top:50%;
+        background-color: darkgrey;
+        text-align: center;
+        margin-top: -60px;
+        display:none;
+    }
+    .left_btn{
+     left:0;
+    }
+    .right_btn{
+        right: -9px;
+    }
+    .lunbo:hover .btn{
+        display: block;
+    }
+
+    .lunbo .num .current{
+        background-color:red;
+    }
+    .introduce{
+        width:100%;
+        height:500px;
+{#        background-color:red;#}
+        margin-top:120px;
+    }
+    .introduce .column{
+        margin:50px 40px 20px 50px;
+        width:200px;
+        height:360px;
+        float:left;
+    }
+    .introduce .column:hover{
+        background-color:#D3D3D3;
+        font-size:15px;
+    }
+    .introduce p{
+        font-size:18px;
+        font-family:"黑体";
+    }
+    .a{
+    opacity:1;
+    }
+
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+    <div class="lunbo">
+        <ul class="img">
+            <li>
+                <a><img src="/static/images/1.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/2.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/3.jpg" class="img1"></a>
+            </li>
+            <li>
+                <a><img src="/static/images/4.jpg" class="img1"></a>
+            </li>
+        </ul>
+        <ul class="num">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="left_btn btn ">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </div>
+        <div class="right_btn btn">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="introduce">
+<h2 style="text-align: center;margin-top: 50px;">社团运行方向</h2>
+    <div class="column c1">
+        <h1 style="text-align: center;"><a href="https://baike.baidu.com/item/Linux">Linux运维</a></h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Linux是一套免费使用和自由传播的类Unix操作系统。图形界面使用简单，容易入门。文字界面，需要学习才能掌握。系统构造简单、稳定，且知识、技能传承性好，深入学习相对容易。</p>
+    </div>
+    <div class="column c2">
+        <h1 style="text-align: center;"><a href="https://baike.baidu.com/item/PHP/9337?fr=aladdin">PHP</a></h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;PHP是通用开源脚本语言。可在不同的平台上运行（Windows、Linux、Unix、Mac OS X 等）。
+PHP 与目前几乎所有的正在被使用的服务器相兼容。
+PHP 提供了广泛的数据库支持。免费的，易于学习，并可高效地运行在服务器端</p>
+    </div>
+    <div class="column c3">
+        <h1 style="text-align: center;"><a href="https://baike.baidu.com/item/Python/407313">Python</a></h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Python是一种计算机程序设计语言。是一种面向对象的动态类型语言，最初被设计用于编写自动化脚本(shell)，随着版本的不断更新和语言新功能的添加，越来越多被用于独立的、大型项目的开发。</p>
+    </div>
+    <div class="column c4">
+        <h1 style="text-align: center;"><a href="https://baike.baidu.com/item/Docker">Docker</a></h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，发布到任何流行的机器上，也可实现虚拟化。每个Docker实例的运营生命周期有限，实例数量根据需求增减。</p>
+    </div>
+    <div class="column c5">
+        <h1 style="text-align: center;"><a href="https://baike.baidu.com/item/HTML">HTML</a></h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;超文本标记语言，支持不同的数据格式的文件镶入。网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。</p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+
+
+<script>
+    $('.num li').mouseover(function () {
+        $(this).addClass('current').siblings().removeClass('current');
+        var index=$(this).index()
+        $(".img li").eq(index).fadeIn(1000).siblings().fadeOut(1000);
+    })
+
+    var time=setInterval(moveR,1500);
+    var i=0;
+    function moveR() {
+        if (i==3){
+            i=-1;
+        }
+        i++;
+        $(".num li").eq(i).addClass('current').siblings().removeClass('current');
+        $(".img li").eq(i).fadeIn(1000).siblings().fadeOut(1000);
+    }
+
+    function moveL(){
+        if(i==0){
+            i=4;
+        }
+        i--;
+        $(".num li").eq(i).addClass("current").siblings().removeClass("current");
+        $(".img li").eq(i).stop().fadeIn(1000).siblings().stop().fadeOut();
+    }
+    $(".lunbo").hover(function () {
+        clearInterval(time);
+    },function () {
+        time=setInterval(moveR,1500);
+    })
+    
+    $(".left_btn").click(function () {
+        moveL();
+    })
+
+    $(".right_btn").click(function () {
+        moveR();
+    })
+
+$(document).ready(function () {
+ {# $('.column').mouseenter(function () {#}
+ {#     $(this).siblings().animate({#}
+ {#         opacity:'0.5'#}
+ {#     })#}
+ {# });#}
+ {#$('.column').mouseout(function () {#}
+ {#     $(this).addClass('a');#}
+ {#     $(this).siblings().animate({#}
+ {#         opacity:'1'#}
+ {#     })#}
+ {# });#}
+});
+</script>
+{% endblock %}

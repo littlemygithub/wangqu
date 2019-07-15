@@ -1,0 +1,103 @@
+{% extends "login/common.html" %}
+{% block css %}
+
+.model1{
+    position:fixed;
+    top:50%;
+    left:50%;
+    background-color:darkgrey;
+    height:100px;
+    width:350px;
+    margin-left:-100px;
+    margin-top:-200px;
+    {#opacity: 0.3;#}
+}
+.model1{
+  height: 400px;
+    width:300px;
+    }
+.hide{
+    display:none;
+}
+        .model1 input{
+            width: 250px;
+            min-height: 30px;
+            margin:6px 10px 5px 20px;
+    }
+        .model1 button{
+        {#margin-left: 20px;#}
+            {#margin-right: 30px;#}
+            margin:20px 30px 10px 40px;
+    }
+
+{% endblock %}
+
+
+{% block content %}
+    <table class="table table-hover" border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>图片路径</th>
+            <th>年级</th>
+            <th>职位</th>
+            <th>博客站点</th>
+            <th>介绍</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in obj.values %}
+        <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.picture }}</td>
+                <td>{{ i.grade }}</td>
+                <td>{{ i.position }}</td>
+                <td style="overflow: hidden;">{{ i.blog }}</td>
+            <td class="introduce1">{{ i.introduce }}</td>
+
+            <td>
+{#                <button class="source_edit">编辑</button><br><br><br>#}
+                <form action="/login_people-{{ i.id }}/" method="post">
+                    <button type="submit" id="{{ i.id }}">删除</button>
+{#                    <input type="submit" name="{{ i.id }}" value="删除">#}
+                </form>
+            </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+    </div>
+</div>
+
+
+
+{#<div class="shade hide"></div>#}
+{#<div class="model hide">#}
+{#    <h1 style="margin-left: 20px;">你确定要删除吗？</h1>#}
+{#    <button class="btn-primary" style="margin-left: 20px;" id="id_delete">是的，我要删除</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#}
+{#    <button class="btn-primary" id="id_think">不，我再考虑一下</button>#}
+{#</div>#}
+
+<div class="shade1 hide"></div>
+<div class="model1 hide">
+    <form action="/login_people-1/" method="post">
+    <input name="name" type="text" placeholder="姓名">
+    <input name="picture" type="text" placeholder="图片路径">
+    <input name="grade" type="text" placeholder="年级">
+    <input name="position" type="text" placeholder="职位">
+    <input name="blog" type="text" placeholder="博客站点">
+    <textarea name="introduce" style="width: 250px;height: 90px; margin-left: 20px;">个人介绍</textarea>
+         <button  class="btn" id="id_cancel">取消
+    <button type="submit" class="btn">确定
+    </form>
+</div>
+
+{% endblock %}
+
+

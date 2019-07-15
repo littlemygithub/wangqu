@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block css %}
+    .about{
+        height:500px;
+    }
+    .head{
+        height:100px;
+        text-align:center;
+        margin-top:120px;
+    }
+    .about_left{
+        width:400px;
+        height:350px;
+        float:left;
+        margin-left:100px;
+        margin-right:50px;
+{#        background-color:yellow;#}
+    }
+    .about_right{
+        width:800px;
+        height:350px;
+        float:left;
+        margin-left:50px;
+{#        background-color:blue;#}
+    }
+
+    .img-circle{
+        width:400px;
+        height:350px;
+    }
+    .introduce{
+        font-size:20px;
+    }
+{% endblock %}
+
+
+{% block content %}
+<div class="about">
+    <div class="head">
+        <h1>About us</h1>
+    </div>
+    <div class="about_left"><img class="img-circle " src="/static/images/pictures/about.jpg"></div>
+    <div class="about_right">
+        <h3><b>网趣社团</b></h3><br>
+        <span class="introduce">&nbsp;&nbsp;&nbsp;&nbsp;大学生社团是指共青团、学生会之外，由学生依据兴趣爱好、自愿组成，履行社团组织审批登记手续成立的，并在学校有关部门或老师的指导下，按照章程自行开展活动的学生组织。
+            社团是大学生在志趣相投的基础上自愿组成的，能代表和反映广大会员意愿和利益的社会团体。它既是同学们发现自我，展现自我，超越自我的舞台，也是大学生提高自身综合素质，增强社会实践能力，为丰富大学生活，为将来走进社会打好基础的前沿阵地。大学生社团的健康发展，有利于丰富校园文化，有利于学生第二课堂的拓展，有利于正确引导学生培养良好的兴趣爱好和社会责任感，理应受到学校领导和社会各界的大力支持和高度重视。
+        </span>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}

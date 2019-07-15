@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block css %}
+ .gao{
+{#    width:100%;#}
+    min-height:580px;
+    text-align:center;
+    }
+    .form1{
+        margin-top:130px;
+    }
+    .form-control{
+        width:200px;
+        height:30px;
+        margin-right:140px;
+        float:right;
+    }
+    .btn{
+        float:right;
+        height:30px;
+        margin-right:-260px;
+    }
+    .page{
+{#        width:100%;#}
+        height:100px;
+        float:right;
+    margin-right:80px;
+{#    bottom:100px;#}
+    }
+    .pagination li a.active{
+    background-color:green;
+    color:white;
+    }
+
+{% endblock %}
+
+
+{% block content %}
+<div class="gao">
+
+<form class="form1" action="/source/" method="post">
+    <input type="text" class="form-control" placeholder="Search for..." name="keyword">
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+<table class="table table-hover">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th style="text-align: center;">ID</th>
+      <th style="text-align: center;">名称</th>
+      <th style="text-align: center;">链接</th>
+      <th style="text-align: center;">提取码</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in obj %}
+      {% if key_word %}
+        {% if key_word in item.name %}
+            <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td><a href="{{ item.link }}">{{ item.link }}</a></td>
+            <td>{{ item.code }}</td>
+            </tr>
+        {% endif %}
+      {% else %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td><a href="{{ item.link }}">{{ item.link }}</a></td>
+            <td>{{ item.code }}</td>
+          </tr>
+      {% endif %}
+  {% endfor %}
+
+  </tbody>
+</table>
+
+<div class="page">
+    <ul class="pagination pagination-lg">
+
+            {{ str_pager | safe }}
+
+    </ul><br><br>
+</div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "login/common.html" %}
+{#{% block header %}#}
+
+{#{% endblock %}#}
+{% block css %}
+
+.model1{
+    position:fixed;
+    top:50%;
+    left:50%;
+    background-color:darkgrey;
+    height:200px;
+    width:350px;
+    margin-left:-100px;
+    margin-top:-180px;
+    {#opacity: 0.3;#}
+}
+
+.hide{
+    display:none;
+}
+        .model1 input{
+            width: 300px;
+            min-height: 30px;
+            margin:6px 10px 5px 20px;
+    }
+        .model1 button{
+            margin:20px 30px 10px 40px;
+    }
+
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover" border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>链接</th>
+            <th>提取码</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in obj.values %}
+        <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.link }}</td>
+                <td>{{ i.code }}</td>
+
+            <td>
+                <form action="/login_source-{{ i.id }}/" method="post">
+                    <button type="submit" id="{{ i.id }}">删除</button>
+                </form>
+            </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+    </div>
+</div>
+
+
+
+<div class="shade1 hide"></div>
+<div class="model1 hide">
+    <form action="/login_source-1/" method="post">
+    <input name="name" type="text" placeholder="名称">
+    <input name="link" type="text" placeholder="对应链接">
+    <input name="code" type="text" placeholder="提取码">
+     <button  class="btn" id="id_cancel">取消
+    <button type="submit" class="btn">确定
+    </form>
+</div>
+
+{% endblock %}
+
+

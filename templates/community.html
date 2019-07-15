@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block css %}
+    .com_content{
+        width:100%;
+        min-height:480px;
+        margin-top:110px;
+    }
+    .head{
+    height:100px;
+    text-align:center;
+    margin-top:120px;
+    }
+    .com_left,.com_right{
+        width:550px;
+        height:300px;
+        margin:20px 80px 20px 100px;
+        float:left;
+{#        background-color:grey;#}
+        text-align:center;
+    background:url("/static/images/manage1.jpg")
+
+    }
+    .con_top{
+        margin-top:30px;
+    }
+
+{% endblock %}
+
+
+{% block content %}
+<div class="com_content">
+    <div class="head">
+        <h1>Community management</h1>
+    </div>
+    <div class="com_left">
+        <h2 style="text-align: center;">规章制度</h2>
+    <ol class="con_top">
+        <li>社团每周会有社团例会，需要按时参加并进行考勤</li>
+        <li>入驻地下室的成员在社团内禁止大声喧哗，妨碍他人</li>
+        <li>在社团内尽量不要做与学习无关的事情</li>
+        <li>学长学姐会尽最大努力帮助你们解决问题</li>
+    </ol>
+    </div>
+    <div class="com_right">
+    <h2 style="text-align: center;">学习安排</h2>
+    <ol class="con_top">
+        <li>高年级的同学会对学弟学妹进行课程培训</li>
+        <li>每月会进行月考，用于对本月的学习情况的考察</li>
+        <li>高年级学生会很热情的回答学弟学妹们的疑难问题</li>
+
+    </ol>
+</div>
+</div>
+
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}
